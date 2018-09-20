@@ -1,152 +1,71 @@
 #Basic code by adamdev12
 
+# Basic code by adamdev12
+
+
+# signin allows the user to sign in
 def signin():
-    #sign in function.
-    print("log in")
+    # sign in function.
+    print('log in')
     valid = False
-    while valid == False:
-        username = input("username: ")
-        password = input("password: ")
-        if username == "adam" and password == "0000":
+    while not valid:
+        username = input('Username: ')
+        password = input('Password: ')
+
+        # TODO: Replace with actual login code.
+        if username == 'adam' and password == '0000':
             valid = True
         else:
-
             print('incorrect username/password')
+    
 
+
+# validate checks if the password is long enough.
 def validate():
     while True:
-        password = input =('Enter a password: ')
+        password = input('Enter a password: ')
         if len(password) < 7:
             print('password must be at least 7 characters')
 
-        elif password.isdidget():
+        elif password.isdigit():
             print('password must be 7 characters or more')
         else:
             print('password is okay')
             break
-                           
+
+
+# signup creates a new user account.
 def signup():
-
-    #signup function
-
-    print("signup")
-
+    print('signup')
     print('sign up screen.')
-
     global user
-
-    global password
-
-    password = ""
-
-    user = []
-
-    fname = input('enter your name: ')
-
-    username = input('enter a username: ')
-
+    password = ''
+    fname = input('First Name: ')
+    fullname = input('Last Name: ')
+    username = input('Username: ')
     validate()
-
-    email = input("E-mail: ")
-
-    fullname = input("Full Name: ")
-
-    dateofbirth = input("Date Of Birth: ")
-
-    user.append(username)
-
-    user.append(password)
-
-    user.append(email)
-
-    user.append(fullname)
-
-    user.append(dateofbirth)
+    email = input('E-mail: ')
+    dateofbirth = input('Date Of Birth: ')
 
 
 
-print("OCR tunes!")
-
-print("1) log in?")
-
-print("2) sign up?")
-
+print('OCR tunes!')
+print('1) log in?')
+print('2) sign up?')
 choice = input('Please choose an option.')
 
-
-
-
-validchoice = False
-
-while validchoice == False:
-
-    if choice == "1" :
-
-        #goto sign in
-
-        signin()
-
-        validchoice = True
-
-    elif choice == "2" :
-
-    
-
-
-
-        #goto signup
-
-        signup()
-
-        validchoice = True
-
+while True:
+    if choice == '1':
+        # goto sign in
+        user = signin()
+        break
+    elif choice == '2':
+        # goto signup
+        user = signup()
+        break
     else:
-
         choice = input
+        print('Please choose option 1 or 2')
 
-        ("please choose option 1 or 2")
-
-
-
-
-
-
-
-def list10():
-
-    print('last 10 songs listened to')
-
-    global movielist
-
-    movielist = []
-
-    load()
-
-    length = len(movielist)
-
-    i = 0
-
-    found = False
-
-    while found == False and i < length :
-
-            #OUTPUT THE PRODUCT IF FOUND.
-
-            if userlist[i][0] == username:
-
-                n = 9
-
-                for n in range (9,19):
-
-                    movielist.append(userlist[i][n])
-
-                found = True
-
-            i = i + i
-
-    printlist(i)
-
-
-
-
-
+# TODO: Do something after logging in.
+print('Nothing to do, exiting...')
