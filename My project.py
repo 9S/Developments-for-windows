@@ -1,5 +1,3 @@
-#Basic code by adamdev12
-
 # Basic code by adamdev12
 
 
