@@ -1,69 +1,65 @@
+#!/usr/bin/env python3
 # Basic code by adamdev12
 
 
-# signin allows the user to sign in
-def signin():
-    # sign in function.
-    print('log in')
-    valid = False
-    while not valid:
-        username = input('Username: ')
-        password = input('Password: ')
-
-        # TODO: Replace with actual login code.
-        if username == 'adam' and password == '0000':
-            valid = True
-        else:
-            print('incorrect username/password')
-    
-
-
-# validate checks if the password is long enough.
-def validate():
-    while True:
-        password = input('Enter a password: ')
-        if len(password) < 7:
-            print('password must be at least 7 characters')
-
-        elif password.isdigit():
-            print('password must be 7 characters or more')
-        else:
-            print('password is okay')
-            break
-
-
-# signup creates a new user account.
-def signup():
-    print('signup')
-    print('sign up screen.')
-    global user
-    password = ''
-    fname = input('First Name: ')
-    fullname = input('Last Name: ')
-    username = input('Username: ')
-    validate()
-    email = input('E-mail: ')
-    dateofbirth = input('Date Of Birth: ')
-
+# Login code
+import login
+# custom errors
+import error
 
 
 print('OCR tunes!')
-print('1) log in?')
-print('2) sign up?')
-choice = input('Please choose an option.')
+print('[1] log in?')
+print('[2] sign up?')
+choice = input('Please choose an option: ')
+
 
 while True:
     if choice == '1':
-        # goto sign in
-        user = signin()
-        break
+        # Signing in.
+        try:
+            # Try logging in
+            username, mail = login.verify_user()
+            print("Signed in successfully.")
+            break
+
+        except error.PasswordIncorrect:
+            # If the password is incorrect, not login
+            print("Password wrong.")
+
+        except error.UserNotFound:
+            # If the user is not registered, not login
+            print("Username not found.")
+
     elif choice == '2':
-        # goto signup
-        user = signup()
-        break
+        # Sign up.
+
+        # Create a new user account
+        print("Creating a new user account:")
+        login.create_user()
+
+        # Let the user login with that user account.
+        print("Now log in with your new account:")
+        try:
+            # Try logging in
+            username, mail = login.verify_user()
+            print("Signed in successfully.")
+            break
+
+        except error.PasswordIncorrect:
+            # If the password is incorrect, not login
+            print("Password wrong.")
+
+        except error.UserNotFound:
+            # If the user is not registered, not login
+            print("Username not found.")
+
     else:
-        choice = input
-        print('Please choose option 1 or 2')
+        # User did not type 1 or 2
+        print('Please choose option [1] or [2].')
 
 # TODO: Do something after logging in.
-print('Nothing to do, exiting...')
+print('Hello {}, your mail was {}'.format(username, mail))
+
+
+
