@@ -44,7 +44,7 @@ def hash_password(prompt, salt=uuid.uuid4().hex):
     # option to send our own salt through this function
 
     #               Hashes the     password                             and the     salt
-    password_hash = hashlib.sha512(getpass.getpass(prompt=prompt).encode("utf-8") + salt.encode("utf-8")).hexdigest()
+    password_hash = hashlib.sha512(getpass.getpass(prompt=prompt).encode('utf-8') + salt.encode('utf-8')).hexdigest()
 
     # return that hash and salt.
     return password_hash, salt
@@ -53,19 +53,19 @@ def hash_password(prompt, salt=uuid.uuid4().hex):
 # create_user creates a new user and stores it in the database
 def create_user():
     # Get username
-    username = input("Username: ")
+    username = input('Username: ')
     # Instead of storing the password in a variable
     # just send it straight to the hashing function
-    pw_hash, pw_salt = hash_password("Password: ")
+    pw_hash, pw_salt = hash_password('Password: ')
     # get email address
-    mail = input("E-Mail: ")
+    mail = input('E-Mail: ')
 
     # Put all that data into a dict
     user = {
-        "username": username,
-        "password_hash": pw_hash,
-        "password_salt": pw_salt,
-        "mail": mail
+        'username': username,
+        'password_hash': pw_hash,
+        'password_salt': pw_salt,
+        'mail': mail
     }
 
     # add the user to the user list
@@ -77,14 +77,14 @@ def create_user():
 # verify_user checks if the user exists and their password is right
 def verify_user():
     # Get username
-    username = input("Username: ")
+    username = input('Username: ')
 
     # Check if user exists
     for user in user_data:
-        if user["username"] == username:
-            pw_hash, _ = hash_password("Password: ", user["password_salt"])
-            if pw_hash == user["password_hash"]:
-                return user["username"], user["mail"]
+        if user['username'] == username:
+            pw_hash, _ = hash_password('Password: ', user['password_salt'])
+            if pw_hash == user['password_hash']:
+                return user['username'], user['mail']
             else:
                 raise error.PasswordIncorrect
 
@@ -92,5 +92,5 @@ def verify_user():
 
 
 # load database
-database_location = "users.json"
+database_location = 'users.json'
 user_data = load_database()
